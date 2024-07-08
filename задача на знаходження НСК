@@ -1,0 +1,28 @@
+#include <stdio.h>
+
+int main() {
+    int n, i, a[20], gcd, lcm;
+    printf("Введіть кількість натуральних чисел:\n");
+    scanf("%d", &n);
+
+    printf("Введіть %d натуральних чисел, розділені пробілами:\n", n);
+    for (i = 0; i < n; i++) {
+        scanf("%d", &a[i]);
+    }
+
+    lcm = a[0];
+
+    for (i = 1; i < n; i++) {
+        gcd = a[i];
+        while (lcm % gcd != 0) {
+            int temp = gcd;
+            gcd = lcm % gcd;
+            lcm = temp;
+        }
+
+        lcm = lcm * a[i] / gcd;
+    }
+
+    printf("Найменше спільне кратне заданих чисел: %d\n", lcm);
+    return 0;
+}
